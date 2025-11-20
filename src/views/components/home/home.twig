@@ -1,0 +1,393 @@
+{% extends "layouts.master" %} {% block content %}
+<div class="font-serif">
+  {# --- NAV SECTION (Merged from Nav.jsx) --- #} {# Note: Ideally this goes in
+  headers/header.twig, but keeping here as requested #}
+  <div
+    class="flex items-center justify-between p-2 bg-black fixed top-0 left-0 w-full z-50 font-serif"
+  >
+    <a href="{{ link('/') }}">
+      {# Make sure to upload Logo.png to src/assets/images/ #}
+      <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="w-20" />
+    </a>
+    <div class="flex gap-6 text-white text-xl hidden md:flex">
+      <a href="{{ link('/') }}" class="transition-all text-orangeColor">Home</a>
+      <a href="#projects" class="transition-all hover:text-orangeColor"
+        >Projects</a
+      >
+      <a
+        href="{{ link('/about') }}"
+        class="transition-all hover:text-orangeColor"
+        >About</a
+      >
+      <a href="#circle" class="transition-all hover:text-orangeColor">Circle</a>
+      <a href="#press" class="transition-all hover:text-orangeColor">Press</a>
+      <a
+        href="{{ link('/contact') }}"
+        class="transition-all hover:text-orangeColor"
+        >Contact Us</a
+      >
+    </div>
+  </div>
+
+  {# --- HERO SECTION (Merged from Home.jsx) --- #}
+  <div
+    class="flex items-center justify-center bg-black mt-24 p-10 md:p-15 text-center h-screen"
+  >
+    <div
+      class="flex flex-col gap-4 text-white items-center"
+      data-aos="fade-down"
+      data-aos-duration="800"
+    >
+      <h1 class="text-4xl md:text-7xl">
+        Welcome to <span class="text-orangeColor">Vv</span>
+      </h1>
+      <p class="text-grayColor">
+        Your gateway to exclusive experiences and unparalleled opportunities.
+      </p>
+
+      {# Featured Mini-CTA #}
+      <div class="flex flex-col gap-3 items-center p-3 rounded-xl">
+        <p class="text-grayColor text-xl">Featured Project</p>
+        <h1 class="text-3xl">The Executive Code</h1>
+        <a
+          href="#projects"
+          class="p-2 rounded-xl w-full text-white bg-orangeColor hover:shadow-2xl shadow-orangeColor block text-center"
+        >
+          View Products
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {# --- PHILOSOPHY SECTION --- #}
+  <div
+    class="p-10 md:p-20 bg-white text-center"
+    data-aos="fade-down"
+    data-aos-duration="1000"
+  >
+    <h1 class="text-black font-semibold text-4xl md:text-5xl">
+      Our Philosophy
+    </h1>
+    <p class="text-grayColor mt-6 text-xl">
+      At Vv, we believe that true value lies in quality over quantity. Our
+      platform is designed for those who understand that meaningful connections
+      and exceptional experiences cannot be mass-produced.
+    </p>
+    <br />
+    <p class="text-grayColor text-xl">
+      We curate every aspect of our community to ensure that each member
+      contributes to and benefits from our collective excellence.
+    </p>
+  </div>
+
+  {# --- STATS SECTION --- #}
+  <div
+    class="bg-black p-10 items-center justify-evenly flex flex-col md:flex-row"
+    data-aos="fade-down"
+    data-aos-duration="800"
+  >
+    <div
+      class="bg-secondaryColor text-center p-10 rounded-xl transition-all hover:-translate-y-2 mb-5 md:mb-0"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+    >
+      <h1 class="text-orangeColor text-3xl md:text-5xl">5,000+</h1>
+      <h3 class="text-grayColor mt-5 text-2xl md:text-4xl">
+        Members Worldwide
+      </h3>
+    </div>
+    <div
+      class="bg-secondaryColor text-center p-10 rounded-xl transition-all hover:-translate-y-2 mb-5 md:mb-0"
+      data-aos="fade-right"
+      data-aos-duration="1200"
+    >
+      <h1 class="text-orangeColor text-3xl md:text-5xl">120+</h1>
+      <h3 class="text-grayColor mt-5 text-2xl md:text-4xl">
+        Countries Represented
+      </h3>
+    </div>
+    <div
+      class="bg-secondaryColor text-center p-10 rounded-xl transition-all hover:-translate-y-2"
+      data-aos="fade-right"
+      data-aos-duration="1400"
+    >
+      <h1 class="text-orangeColor text-3xl md:text-5xl">95%</h1>
+      <h3 class="text-grayColor mt-5 text-2xl md:text-4xl">
+        C-Level Executives
+      </h3>
+    </div>
+  </div>
+
+  {# --- READY CTA --- #}
+  <div
+    class="p-10 items-center justify-evenly flex flex-col text-center gap-6"
+    data-aos="fade-right"
+    data-aos-duration="1000"
+  >
+    <h1 class="text-4xl font-semibold">Ready to Explore?</h1>
+    <h2 class="text-2xl text-grayColor">
+      Discover what Vv has to offer and become part of something extraordinary.
+    </h2>
+    <div class="flex gap-3">
+      <a href="#projects">
+        <button
+          class="rounded-xl p-3 bg-black text-white transition-all hover:scale-110"
+        >
+          View Projects
+        </button>
+      </a>
+      <a href="#circle">
+        <button
+          class="rounded-xl p-3 bg-white text-black border border-black hover:bg-black hover:text-white transition-all hover:scale-110"
+        >
+          The Circle
+        </button>
+      </a>
+    </div>
+  </div>
+
+  {# --- DYNAMIC PROJECTS SECTION (Modified from Projects.jsx) --- #}
+  <div
+    class="bg-black flex flex-col items-center justify-center pb-20"
+    id="projects"
+  >
+    {# Section Header #}
+    <div
+      class="text-center p-10 md:p-20"
+      data-aos="fade-right"
+      data-aos-duration="800"
+    >
+      <h1 class="text-white text-4xl font-semibold">Our Projects</h1>
+      <h3 class="text-grayColor">
+        Exclusive initiatives designed to elevate your professional journey
+      </h3>
+    </div>
+
+    {# SALLA DYNAMIC PRODUCT LOOP #}
+    <div class="w-full max-w-7xl px-5 grid grid-cols-1 md:grid-cols-2 gap-10">
+      {% for product in products %}
+      <div
+        class="flex flex-col bg-secondaryColor rounded-2xl overflow-hidden border border-transparent hover:border-orangeColor transition-all"
+        data-aos="fade-up"
+      >
+        {# Product Image #}
+        <div class="w-full flex items-center justify-center bg-black">
+          <a href="{{ product.url }}" class="w-full">
+            <img
+              src="{{ product.image.url }}"
+              alt="{{ product.image.alt }}"
+              class="w-full h-64 object-cover hover:opacity-90 transition-opacity"
+            />
+          </a>
+        </div>
+
+        {# Product Details #}
+        <div class="bg-secondaryColor p-8 flex flex-col gap-5 flex-1">
+          <div class="flex justify-between items-start">
+            <div
+              class="p-2 rounded-2xl bg-mutedOrange w-auto inline-block px-4"
+            >
+              <h3 class="text-orangeColor text-sm font-bold">Active</h3>
+            </div>
+            <h4 class="text-white text-xl">{{ product.price | money }}</h4>
+          </div>
+
+          <a href="{{ product.url }}">
+            <h1
+              class="text-white text-2xl lg:text-3xl hover:text-orangeColor transition-colors"
+            >
+              {{ product.name }}
+            </h1>
+          </a>
+
+          <h2 class="text-grayColor text-lg line-clamp-2">
+            {{ product.description | striptags }}
+          </h2>
+
+          {# Static Stats (Optional: You can make these dynamic if using product
+          custom fields later) #}
+          <div
+            class="flex flex-col md:flex-row justify-between gap-5 mt-auto pt-5"
+          >
+            <div class="flex items-center gap-4">
+              <div class="bg-mutedOrange p-2 rounded-xl">
+                <i class="sicon-user text-2xl text-orangeColor"></i>
+              </div>
+              <div class="flex flex-col">
+                <p class="text-grayColor text-sm">Participants</p>
+                <h4 class="text-white">Limited</h4>
+              </div>
+            </div>
+          </div>
+
+          <salla-add-button
+            product-id="{{ product.id }}"
+            class="mt-4 w-full btn-primary bg-orangeColor text-white rounded-xl p-3 hover:bg-white hover:text-orangeColor transition-all"
+          >
+            Get Now
+          </salla-add-button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {# Future Projects (Static from React) #}
+    <div
+      class="w-full flex flex-col bg-white items-center gap-5 justify-center p-10 mt-20"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+    >
+      <h1 class="text-black text-3xl">Coming Soon</h1>
+      <div
+        class="flex flex-col gap-4 md:flex-row w-full max-w-5xl justify-center"
+      >
+        <div
+          class="rounded-xl flex flex-col gap-2 border hover:border-orangeColor transition-all p-5 flex-1"
+        >
+          <i class="fa-solid fa-arrow-trend-up text-orangeColor text-3xl"></i>
+          <p class="text-black text-lg">Coming Q2 2025</p>
+          <h3 class="text-black text-3xl">Global Innovation Summit</h3>
+          <p class="text-grayColor text-xl">
+            A three-day summit bringing together innovators from around the
+            world.
+          </p>
+        </div>
+
+        <div
+          class="rounded-xl flex flex-col gap-2 border hover:border-orangeColor transition-all p-5 flex-1"
+        >
+          <i class="fa-solid fa-user-group text-orangeColor text-3xl"></i>
+          <p class="text-black text-lg">Coming Q3 2025</p>
+          <h3 class="text-black text-3xl">Vv Ventures Fund</h3>
+          <p class="text-grayColor text-xl">
+            Investment opportunities curated exclusively for Vv members.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {# Get Involved CTA #}
+    <div
+      class="p-10 flex flex-col items-center justify-center gap-5 bg-black text-center w-full"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+    >
+      <h1 class="text-4xl text-white">Want to Get Involved?</h1>
+      <h3 class="text-2xl text-grayColor">
+        Vv members receive exclusive early access to all projects and
+        initiatives.
+      </h3>
+      <a href="{{ link('/contact') }}">
+        <button
+          class="text-black p-4 rounded-xl bg-white hover:bg-orangeColor hover:text-white transition-all hover:scale-110"
+        >
+          Contact Us
+        </button>
+      </a>
+    </div>
+  </div>
+
+  {# --- CIRCLE SECTION (Merged from Circle.jsx) --- #}
+  <div id="circle">
+    <div
+      class="p-10 md:p-20 w-full flex flex-col items-center justify-center bg-white text-center"
+      data-aos="fade-down"
+      data-aos-duration="800"
+    >
+      <h1 class="text-black text-4xl">Be Part of the Circle</h1>
+      <h3 class="text-grayColor text-2xl">
+        Our community grows stronger with each carefully selected member.<br />Excellence
+        recognizes excellence.
+      </h3>
+    </div>
+    <div
+      class="p-10 md:p-20 bg-black flex flex-col gap-6 items-center"
+      data-aos="fade-down"
+      data-aos-duration="800"
+    >
+      <div class="text-center gap-4">
+        <h1 class="text-white text-4xl">The Circle Is Growing</h1>
+        <p class="text-grayColor text-2xl">
+          Join thousands of exceptional professionals worldwide
+        </p>
+      </div>
+      <div
+        class="px-15 py-5 flex flex-col gap-5 bg-secondaryColor w-full md:w-3/4 items-center rounded-xl text-center"
+      >
+        <div class="p-3 rounded-full bg-mutedOrange">
+          <i class="fa-solid fa-user-group text-3xl text-orangeColor"></i>
+        </div>
+        <p class="text-grayColor text-3xl">TOTAL MEMBERS</p>
+        <p class="text-orangeColor text-7xl">5,247</p>
+        <p class="text-grayColor text-3xl">and counting...</p>
+      </div>
+    </div>
+  </div>
+
+  {# --- PRESS SECTION (Merged from Press.jsx) --- #}
+  <div id="press">
+    <div
+      class="bg-white p-10 md:p-20 flex flex-col gap-10 items-center justify-center"
+      data-aos="fade-down"
+      data-aos-duration="800"
+    >
+      <h1 class="text-grayColor text-3xl">As Featured In</h1>
+      <div class="flex gap-4 text-grayColor flex-col md:flex-row text-center">
+        <p class="text-2xl">Forbes</p>
+        <p class="text-2xl">TechCrunch</p>
+        <p class="text-2xl">Bloomberg</p>
+        <p class="text-2xl">WSJ</p>
+        <p class="text-2xl">Economist</p>
+        <p class="text-2xl">Fast Co.</p>
+      </div>
+    </div>
+    <div
+      class="p-10 md:p-20 w-full flex flex-col items-center justify-center bg-black text-center"
+    >
+      <h1 class="text-white text-4xl">Press & Media</h1>
+      <h3 className="text-grayColor text-2xl">
+        What industry leaders are saying about VV
+      </h3>
+    </div>
+    <div class="bg-black p-10 flex gap-10 flex-col items-center justify-center">
+      <h1 class="text-white text-4xl">Recent Coverage</h1>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 items-center gap-10"
+        data-aos="fade-down"
+        data-aos-duration="800"
+      >
+        {# Press Cards Loop (Static) #} {% for i in 1..4 %}
+        <div
+          class="p-10 flex flex-col gap-5 bg-secondaryColor rounded-xl border border-black hover:border-orangeColor transition-all"
+          data-aos="fade-right"
+        >
+          <i class="fa-solid fa-quote-left text-orangeColor text-3xl"></i>
+          <h3 class="text-white text-3xl">
+            "Vv is redefining what it means to build a professional network
+            in<br />the digital age."
+          </h3>
+          <div class="flex justify-between items-center">
+            <div class="flex flex-col gap-1">
+              <h3 class="text-orangeColor text-xl">Forbes</h3>
+              <h3 class="text-grayColor text-xl">Sarah Johnson</h3>
+            </div>
+            <div>
+              <h3 class="text-xl text-grayColor">March 2024</h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{# Initialize AOS script if it's not in master layout #}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof AOS !== "undefined") {
+      AOS.init();
+    }
+  });
+</script>
+{% endblock %}
