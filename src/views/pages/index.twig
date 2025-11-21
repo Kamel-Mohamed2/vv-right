@@ -1,40 +1,12 @@
 {% extends "layouts.master" %} {% block content %}
 <div class="font-serif" dir="ltr">
   {# --- NAV SECTION (Merged from Nav.jsx) --- #} {# Note: Ideally this goes in
-  headers/header.twig, but keeping here as requested #}
-  <div
-    class="flex items-center justify-between p-2 bg-black fixed top-0 left-0 w-full z-50 font-serif"
-    dir="ltr"
-    >
-    <a href="{{ link('/') }}">
-      {# Make sure to upload Logo.png to src/assets/images/ #}
-      <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="w-20" />
-    </a>
-    <div class="flex gap-6 text-white text-xl hidden md:flex">
-      <a href="{{ link('/') }}" class="transition-all text-orangeColor">Home</a>
-      <a href="#projects" class="transition-all hover:text-orangeColor"
-        >Projects</a
-      >
-      <a
-        href="{{ link('/about') }}"
-        class="transition-all hover:text-orangeColor"
-        >About</a
-      >
-      <a href="#circle" class="transition-all hover:text-orangeColor">Circle</a>
-      <a href="#press" class="transition-all hover:text-orangeColor">Press</a>
-      <a
-        href="{{ link('/contact') }}"
-        class="transition-all hover:text-orangeColor"
-        >Contact Us</a
-      >
-    </div>
-  </div>
-
-  {# --- HERO SECTION (Merged from Home.jsx) --- #}
+  headers/header.twig, but keeping here as requested #} {# --- HERO SECTION
+  (Merged from Home.jsx) --- #}
   <div
     class="flex items-center justify-center bg-black mt-24 p-10 md:p-15 text-center h-screen"
     dir="ltr"
-    >
+  >
     <div
       class="flex flex-col gap-4 text-white items-center"
       data-aos="fade-down"
