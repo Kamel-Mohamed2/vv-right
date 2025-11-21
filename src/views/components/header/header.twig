@@ -31,7 +31,7 @@
     {# 3. Functional Tools (Cart & Login) - Essential for Sales #}
     <div class="flex items-center gap-4 text-white">
       {# User Menu / Login #} {% if user.type == 'user' %}
-      <salla-user-menu avatar-only show-header></salla-user-menu>
+      {# <salla-user-menu avatar-only show-header></salla-user-menu> #}
       {% else %}
       <button
         class="hover:text-orangeColor"
@@ -40,9 +40,9 @@
         <i class="sicon-user-circle text-2xl"></i>
       </button>
       {% endif %} {# Cart Icon #}
-      <salla-cart-summary class="hover:text-orangeColor">
+      {# <salla-cart-summary class="hover:text-orangeColor">
         <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
-      </salla-cart-summary>
+      </salla-cart-summary> #}
 
       {# Mobile Menu Toggle (Visible only on mobile) #}
       <a
