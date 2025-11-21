@@ -1,86 +1,43 @@
-{#
-| Variable         | Type    | Description                     |
-|------------------|---------|---------------------------------|
-| cart             | object  |                                 |
-| cart.items_count | int     |                                 |
-| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
-#}
-{% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
-  {# Top Nav #}
-  <div class="top-navbar">
-    <div class="container flex justify-between">
-      <div class="flex-1 flex items-center gap-2">
-          {# Footer Menu #}
-          {% if important_links %}
-            <salla-menu source="footer" topnav></salla-menu>
-          {% endif %}
+    <div class="flex items-center justify-between px-4 py-2 bg-black fixed top-0 left-0 w-full z-50 font-serif" dir="ltr">
+        
+        {# 1. Logo #}
+        <a href="{{ store.url }}">
+            <img src="{{ store.logo }}" alt="{{ store.name }}" class="w-20 object-contain" />
+        </a>
 
-          {# Language & Currency Component #}
-          <div class="header-buttons">
-              {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-                  <button type="button" onclick="salla.event.dispatch('localization::open')" class="btn--rounded-gray basis-0">
-                      <span>{{ user.language.name }}</span>
-                      <span class="mx-1.5">|</span> <span>{{ currency.symbol }}</span>
-                  </button>
-                  <salla-localization-modal></salla-localization-modal>
-              {% endif %}
-          </div>
+        {# 2. Navigation Links (Hidden on Mobile) #}
+        <div class="flex gap-6 text-white text-xl hidden md:flex">
+            <a href="{{ link('/') }}" class="transition-all text-orangeColor">Home</a>
+            <a href="#projects" class="transition-all hover:text-orangeColor">Projects</a>
+            <a href="#circle" class="transition-all hover:text-orangeColor">Circle</a>
+            <a href="#press" class="transition-all hover:text-orangeColor">Press</a>
+            <a href="https://vvelite.vercel.app/contact-us" target="_blank" class="transition-all hover:text-orangeColor">Contact Us</a>
+        </div>
 
-          {# Scopes | Branches #}
-          {% if store.scope %}
-              <button class="btn--rounded-gray"
-                      onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
-                  <i class="sicon-location rtl:ml-1 ltr:mr-1"></i> {{ store.scope.name }}
-              </button>
-          {% endif %}
+        {# 3. Functional Tools (Cart & Login) - Essential for Sales #}
+        <div class="flex items-center gap-4 text-white">
+            {# User Menu / Login #}
+            {% if user.type == 'user' %}
+                <salla-user-menu avatar-only show-header></salla-user-menu>
+            {% else %}
+                <button class="hover:text-orangeColor" onclick="salla.event.dispatch('login::open')">
+                    <i class="sicon-user-circle text-2xl"></i>
+                </button>
+            {% endif %}
 
-          {# Search bar #}
-          <div class="header-search flex-1">
-            <salla-search inline oval height="36"></salla-search>
-          </div>
-      </div>
-
-      <salla-contacts is-header></salla-contacts>
+            {# Cart Icon #}
+            <salla-cart-summary class="hover:text-orangeColor">
+                <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
+            </salla-cart-summary>
+            
+            {# Mobile Menu Toggle (Visible only on mobile) #}
+            <a class="md:hidden text-white" href="#mobile-menu" aria-label="Open-menu">
+                 <i class="sicon-menu text-2xl"></i>
+            </a>
+        </div>
     </div>
-  </div>
-
-  {# Main Nav #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white flex items-center">
-      <div class="inner bg-inherit w-full">
-          <div class="container">
-              <div class="flex items-stretch justify-between relative">
-                  <div class="flex items-center">
-                      <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                        <i class="sicon-menu text-primary text-2xl"></i>
-                      </a>
-                      <a class="navbar-brand" href="{{ store.url }}">
-                          <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
-                          {% if is_page('index') %}
-                            <h1 class="sr-only">{{ store.name }}</h1>
-                          {% else %}
-                            <h2 class="sr-only">{{ store.name }}</h2>
-                          {% endif %}
-                      </a>
-                      <custom-main-menu></custom-main-menu>
-                  </div>
-                  <div class="flex items-center justify-end my-2.5">
-                      {% if user.type=='user' %}
-                        <salla-user-menu avatar-only show-header></salla-user-menu>
-                      {% else %}
-                          <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
-                            <i class="header-btn__icon sicon-user-circle"></i>
-                          </button>
-                      {% endif %}
-                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
-                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-                      </salla-cart-summary>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
 </header>
-{% if store.scope %}
-    <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
-{% endif %}
+
+{# Spacer to prevent content overlapping with fixed header #}
+<div class="h-[70px] w-full block"></div>
