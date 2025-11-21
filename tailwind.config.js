@@ -1,5 +1,5 @@
 module.exports = {
-  important: false,
+  important: true,
   content: [
     "src/views/**/*.twig",
     "src/assets/js/**/*.js",
