@@ -1,42 +1,59 @@
 <header class="store-header">
-    <div class="flex items-center justify-between px-4 py-2 bg-black fixed top-0 left-0 w-full z-50 font-serif" dir="ltr">
-        
-        {# 1. Logo #}
-        <a href="{{ store.url }}">
-            <img src="{{ store.logo }}" alt="{{ store.name }}" class="w-20 object-contain" />
-        </a>
+  <div
+    class="flex items-center justify-between px-4 py-2 bg-black fixed top-0 left-0 w-full z-50 font-serif"
+    dir="ltr"
+  >
+    {# 1. Logo #}
+    <a href="{{ store.url }}">
+      <img
+        src="{{ store.logo }}"
+        alt="{{ store.name }}"
+        class="w-20 object-contain"
+      />
+    </a>
 
-        {# 2. Navigation Links (Hidden on Mobile) #}
-        <div class="flex gap-6 text-white text-xl hidden md:flex">
-            <a href="{{ link('/') }}" class="transition-all text-orangeColor">Home</a>
-            <a href="#projects" class="transition-all hover:text-orangeColor">Projects</a>
-            <a href="#circle" class="transition-all hover:text-orangeColor">Circle</a>
-            <a href="#press" class="transition-all hover:text-orangeColor">Press</a>
-            <a href="https://vvelite.vercel.app/contact-us" target="_blank" class="transition-all hover:text-orangeColor">Contact Us</a>
-        </div>
-
-        {# 3. Functional Tools (Cart & Login) - Essential for Sales #}
-        <div class="flex items-center gap-4 text-white">
-            {# User Menu / Login #}
-            {% if user.type == 'user' %}
-                <salla-user-menu avatar-only show-header></salla-user-menu>
-            {% else %}
-                <button class="hover:text-orangeColor" onclick="salla.event.dispatch('login::open')">
-                    <i class="sicon-user-circle text-2xl"></i>
-                </button>
-            {% endif %}
-
-            {# Cart Icon #}
-            <salla-cart-summary class="hover:text-orangeColor">
-                <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
-            </salla-cart-summary>
-            
-            {# Mobile Menu Toggle (Visible only on mobile) #}
-            <a class="md:hidden text-white" href="#mobile-menu" aria-label="Open-menu">
-                 <i class="sicon-menu text-2xl"></i>
-            </a>
-        </div>
+    {# 2. Navigation Links (Hidden on Mobile) #}
+    <div class="flex gap-6 text-white text-xl hidden md:flex">
+      <a href="{{ link('/') }}" class="transition-all text-orangeColor">Home</a>
+      <a href="#projects" class="transition-all hover:text-orangeColor"
+        >Projects</a
+      >
+      <a href="#circle" class="transition-all hover:text-orangeColor">Circle</a>
+      <a href="#press" class="transition-all hover:text-orangeColor">Press</a>
+      <a
+        href="https://vvelite.vercel.app/contact-us"
+        target="_blank"
+        class="transition-all hover:text-orangeColor"
+        >Contact Us</a
+      >
     </div>
+
+    {# 3. Functional Tools (Cart & Login) - Essential for Sales #}
+    <div class="flex items-center gap-4 text-white">
+      {# User Menu / Login #} {% if user.type == 'user' %}
+      <salla-user-menu avatar-only show-header></salla-user-menu>
+      {% else %}
+      <button
+        class="hover:text-orangeColor"
+        onclick="salla.event.dispatch('login::open')"
+      >
+        <i class="sicon-user-circle text-2xl"></i>
+      </button>
+      {% endif %} {# Cart Icon #}
+      <salla-cart-summary class="hover:text-orangeColor">
+        <i slot="icon" class="sicon-shopping-bag text-2xl"></i>
+      </salla-cart-summary>
+
+      {# Mobile Menu Toggle (Visible only on mobile) #}
+      <a
+        class="md:hidden text-white"
+        href="#mobile-menu"
+        aria-label="Open-menu"
+      >
+        <i class="sicon-menu text-2xl"></i>
+      </a>
+    </div>
+  </div>
 </header>
 
 {# Spacer to prevent content overlapping with fixed header #}
