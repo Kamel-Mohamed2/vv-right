@@ -182,8 +182,7 @@
             {{ product.description | striptags }}
           </h2>
 
-          {# Static Stats (Optional: You can make these dynamic if using product
-          custom fields later) #}
+          {# Static Stats #}
           <div
             class="flex flex-col md:flex-row justify-between gap-5 mt-auto pt-5"
           >
@@ -198,12 +197,31 @@
             </div>
           </div>
 
-          <salla-add-button
-            product-id="{{ product.id }}"
-            class="mt-4 w-full btn-primary bg-orangeColor text-white rounded-xl p-3 hover:bg-white hover:text-orangeColor transition-all"
+          {# --- EDITED SECTION: DIRECT CHECKOUT BUTTON (FIXED SYNTAX) --- #}
+          <button
+            data-id="{{ product.id }}"
+            onclick="
+                var btn = this;
+                var pId = btn.getAttribute('data-id');
+                var originalText = btn.innerHTML;
+                
+                btn.innerHTML = 'Processing...';
+                
+                salla.cart.api.addItem({ product_id: pId })
+                .then(function() { 
+                   window.location.href = '/checkout'; 
+                })
+                .catch(function(err) { 
+                   console.log(err); 
+                   btn.innerHTML = originalText; 
+                   salla.notify.error('Could not add to cart'); 
+                });
+             "
+            class="mt-4 w-full btn-primary bg-orangeColor text-white rounded-xl p-3 hover:bg-white hover:text-orangeColor transition-all cursor-pointer"
           >
             Get Now
-          </salla-add-button>
+          </button>
+          {# --- END EDITED SECTION --- #}
         </div>
       </div>
       {% endfor %}
